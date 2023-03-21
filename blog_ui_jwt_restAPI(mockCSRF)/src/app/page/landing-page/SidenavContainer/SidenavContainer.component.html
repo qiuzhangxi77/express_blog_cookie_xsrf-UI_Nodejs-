@@ -1,0 +1,68 @@
+<mat-toolbar color="primary">
+    <div class="flex justify-between w-full">
+        <div class="flex items-center">
+            <button mat-icon-button class="example-icon" (click)="sidenav.toggle()" (keyup.enter)="sidenav.toggle()">
+                <mat-icon class="pt-2">menu</mat-icon>
+              </button>
+              <span class="ml-2">LanBlog</span>
+        </div>
+        <div class="flex items-center">
+            <button [matMenuTriggerFor]="menu">
+                <mat-icon class="pt-2">account_circle</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="BindGitHub()" [disabled]="userService.userInformation.GitHubID">Bind your GitHub user to this account </button>
+                <button mat-menu-item (click)="logout()">Logout</button>
+            </mat-menu>
+        </div>
+    </div>
+</mat-toolbar>
+
+
+<mat-sidenav-container  [hasBackdrop]="false" class="sidenav-container" #sidenavContainer >
+    <mat-sidenav #sidenav fixedInViewport="true" [attr.role]="'navigation'" [mode]="'over'" opened="false">
+        <perfect-scrollbar [config]="config">
+            <mat-toolbar class="pr-0 bg-white">
+                <div tabindex="0" (click)="sidenav.toggle()" (keyup.enter)="sidenav.toggle()" class="flex">
+                    <button type="button" mat-icon-button
+                        tabindex="1" class="mr-4">
+                        <mat-icon>menu_open</mat-icon>
+                    </button>
+                    <img src="assets/blog.jpg" class="h-24 mt-6 w-70">
+                </div>
+            </mat-toolbar>
+            <mat-nav-list>
+                <mat-list-item *ngFor="let menuItem of menuList" (click)="sidenav.toggle()" (keyup.enter)="sidenav.toggle()"
+                    routerLinkActive="selected">
+                    <a [routerLink]="[ menuItem.route ]" class="relative" routerLinkActive="selected">
+                        <mat-icon>{{ menuItem.icon }}</mat-icon>
+                        <span>{{ menuItem.name | uppercase}}</span>
+                    </a>
+                </mat-list-item>
+            </mat-nav-list>
+            <footer class="footer-fix">
+                <mat-nav-list>
+                    <mat-list-item>
+                        <a>
+                            <span>Legal</span>
+                        </a>
+                    </mat-list-item>
+
+                    <mat-list-item>
+                        <a >
+                            <span>Help Center</span>
+                        </a>
+                    </mat-list-item>
+                </mat-nav-list>
+            </footer>
+        </perfect-scrollbar>
+    </mat-sidenav>
+    <mat-sidenav-content (click)="closeSideNav()" (keyup.enter)="closeSideNav()"  class="page-wrapper">
+    <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
+<!-- <h4><strong>{{userService.realName}}</strong>, welcome to yor LanBlog!</h4>
+<button mat-raised-button (click)="OnSubmit()">
+Login Test
+</button> -->

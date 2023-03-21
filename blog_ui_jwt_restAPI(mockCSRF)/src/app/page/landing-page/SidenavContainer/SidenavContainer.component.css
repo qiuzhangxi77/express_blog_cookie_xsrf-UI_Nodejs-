@@ -1,0 +1,5 @@
+::ng-deep html .page-wrapper {
+    height: calc(100vh - 60px);
+    background-color: #e0e1e2;
+    overflow-x: hidden;
+}
