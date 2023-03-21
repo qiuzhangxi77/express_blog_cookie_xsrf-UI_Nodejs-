@@ -14,36 +14,36 @@ export class OAuthServiceService {
 
   // GitHub Oauth2
   getGitHubAuthPage(): Observable<any>{
-    const endpoint = `http://localhost:8000/oauth/GitHubAuthPage`;
+    const endpoint = 'http://localhost:8000/oauth/GitHubAuthPage';
       return this.http
               .get(endpoint, {withCredentials: true})
               .pipe(
                 map( (res:any) => {
-                  return res
+                  return res;
                 })
-              )
+              );
               // .toPromise();
   }
 
   getGitHubAccessToken(auth_code:string){
-    const endpoint = `http://localhost:8000/oauth/GitHubGetAccessToken`;
+    const endpoint = 'http://localhost:8000/oauth/GitHubGetAccessToken';
       return this.http
               .post(endpoint,{code:auth_code}, {withCredentials: true})
               .pipe(
                 map( (res:any) => {
-                  return res
+                  return res;
                 })
               )
               .toPromise();
   }
 
   getGitHubUserDetailsToLogin(){
-    const endpoint = `http://localhost:8000/oauth/loginByGitHub`;
+    const endpoint = 'http://localhost:8000/oauth/loginByGitHub';
       return this.http
               .get(endpoint, {withCredentials: true})
               .pipe(
                 map( (res:any) => {
-                  return res
+                  return res;
                 })
               )
               .toPromise();
@@ -55,7 +55,7 @@ export class OAuthServiceService {
               .get(endpoint, {withCredentials: true})
               .pipe(
                 map( (res:any) => {
-                  return res
+                  return res;
                 })
               )
               .toPromise();
@@ -64,37 +64,37 @@ export class OAuthServiceService {
 
   // Google Oauth2
   getGoogleAuthPage(): Observable<any>{
-    const endpoint = `http://localhost:8000/oauth/GoogleAuthPage`;
+    const endpoint = 'http://localhost:8000/oauth/GoogleAuthPage';
       return this.http
               .get(endpoint, {withCredentials: true})
               .pipe(
                 map( (res:any) => {
-                  return res
+                  return res;
                 })
-              )
+              );
               // .toPromise();
   }
 
   getGoogleAccessToken(auth_code:string){
-    const endpoint = `http://localhost:8000/oauth/GoogleGetAccessToken`;
-    console.log("getGoogleAccessToken code: ", auth_code);
+    const endpoint = 'http://localhost:8000/oauth/GoogleGetAccessToken';
+    console.log('getGoogleAccessToken code: ', auth_code);
       return this.http
               .post(endpoint,{code:auth_code}, {withCredentials: true})
               .pipe(
                 map( (res:any) => {
-                  return res
+                  return res;
                 })
               )
               .toPromise();
   }
 
   getGoogleUserDetailsToLogin(){
-    const endpoint = `http://localhost:8000/oauth/loginByGoogle`;
+    const endpoint = 'http://localhost:8000/oauth/loginByGoogle';
       return this.http
               .get(endpoint, {withCredentials: true})
               .pipe(
                 map( (res:any) => {
-                  return res
+                  return res;
                 })
               )
               .toPromise();
@@ -106,7 +106,7 @@ export class OAuthServiceService {
               .get(endpoint, {withCredentials: true})
               .pipe(
                 map( (res:any) => {
-                  return res
+                  return res;
                 })
               )
               .toPromise();

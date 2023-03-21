@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 })
 
 export class GitHubExtUrlResolverService implements Resolve<any> {
-constructor() { console.log("GitHubExtUrlResolverService start!")}
+constructor() { console.log('GitHubExtUrlResolverService start!');}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) :Observable<any> {
     window.location.href =  route.queryParamMap.get('url') as string;
     return of(null);

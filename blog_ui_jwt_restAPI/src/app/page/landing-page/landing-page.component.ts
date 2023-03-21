@@ -7,21 +7,22 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./landing-page.component.css']
 })
 export class LandingPageComponent implements OnInit {
-
-  constructor(
+  constructor (
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
+    console.log('aaa');
+    console.log('bbbb');
+    console.log('aaaaaa');
   }
-
 }
 
 @NgModule({
-  imports:[RouterModule],
+  imports: [RouterModule],
   declarations: [
     LandingPageComponent
   ],
   providers: [],
-  exports:[LandingPageComponent]
+  exports: [LandingPageComponent]
 })
 export class LandingPageComponentModule { }

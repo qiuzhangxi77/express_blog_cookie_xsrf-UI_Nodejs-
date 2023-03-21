@@ -10,6 +10,7 @@ import { AccountApiServiceService } from 'src/service/AccountApiService.service'
 import { UserService } from 'src/service/UserInformation';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-RegisterContainer',
   templateUrl: './RegisterContainer.component.html',
   styleUrls: ['./RegisterContainer.component.css']
@@ -31,29 +32,30 @@ export class RegisterContainerComponent implements OnInit {
     private _userService: UserService
   ) { }
 
+  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit() {
   }
 
   public async OnSubmit() {
     const userInformation = {
-      realname: this.inputForm.get("realNameControl")?.value,
-      username: this.inputForm.get("userControl")?.value,
-      password: this.inputForm.get("passwordControl")?.value,
-    }
+      realname: this.inputForm.get('realNameControl')?.value,
+      username: this.inputForm.get('userControl')?.value,
+      password: this.inputForm.get('passwordControl')?.value,
+    };
     try {
       const result = await this._accountApiService.register(userInformation);
       if(result.errno === 0) {
-        console.log("Register successful");
+        console.log('Register successful');
         this._router.navigate(['/login'], {
         });
       } else {
-        console.log("Register failed")
-        const message = "userName/userAccount already exists"
-        const action = "dismiss"
+        console.log('Register failed');
+        const message = 'userName/userAccount already exists';
+        const action = 'dismiss';
         this.openSnackBarWarn(message, action);
       }
     } catch (err) {
-      console.log("Register err: ", err)
+      console.log('Register err: ', err);
     }
   }
 
@@ -62,16 +64,16 @@ export class RegisterContainerComponent implements OnInit {
     this.snackBarState = true;
     const valueChangeObj = this.inputForm.valueChanges.subscribe( ()=>{
       if( this._snackBar?._openedSnackBarRef) {
-        this._snackBar.dismiss()
+        this._snackBar.dismiss();
         this.snackBarState = false;
       }
-    })
+    });
 
     const actionObservable = this._snackBar._openedSnackBarRef?.onAction().subscribe( ()=>{
       this.snackBarState = false;
       valueChangeObj.unsubscribe();
       actionObservable?.unsubscribe();
-      })
+      });
   }
 
   public goToLogin() {

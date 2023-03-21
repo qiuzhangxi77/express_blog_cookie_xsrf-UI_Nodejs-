@@ -56,35 +56,35 @@ export class BlogComponent implements OnInit {
 
   public async update() {
     try {
-      const res = await this.accountApiService.updateBlog(this.blogData)
+      const res = await this.accountApiService.updateBlog(this.blogData);
       if ( res.errno === 1) {
-        console.log("update title failed")
+        console.log('update title failed');
       }
-      console.log("update title success")
-      const blogList= await this.getMyBlogList()
+      console.log('update title success');
+      const blogList= await this.getMyBlogList();
       blogList.forEach( (data: BlogContent) => {
         if (this.blogData.blogID === data.blogID) {
           this.blogData = data;
         }
-      })
+      });
       this.originBlog = JSON.parse(JSON.stringify(this.blogData));
       this.isEdit = false;
     } catch(error) {
-     console.log("update title err")
+     console.log('update title err');
     }
   }
 
   public async getMyBlogList() {
-    const id = this.blogData.id
+    const id = this.blogData.id;
     try {
       const res =  await this.accountApiService.getMyBlogList(this._userService.userInformation.userID);
       if(res.errno === 1) {
-        console.log("get myBlogList failed")
+        console.log('get myBlogList failed');
       }
-      console.log("get myBlogList success")
+      console.log('get myBlogList success');
       return  res.data;
     } catch (error) {
-      console.log("get myBlog err")
+      console.log('get myBlog err');
     }
   }
 
@@ -97,25 +97,25 @@ export class BlogComponent implements OnInit {
       }
       const res = await this.accountApiService.newBlog(this.blogData);
       if( res.errno === 1) {
-        console.log("create newBlog failed");
+        console.log('create newBlog failed');
       }
-      console.log("create newBlog success");      
+      console.log('create newBlog success');      
     } catch (error) {
-      console.log("create new blog err");
+      console.log('create new blog err');
     }
     this.handleAddNewBlog.emit(true);
   }
 
   public async delete() {
     try {
-      const res = await this.accountApiService.deleteBlog(this.blogData)
+      const res = await this.accountApiService.deleteBlog(this.blogData);
       if ( res.errno === 1) {
-        console.log("delete blog failed");
+        console.log('delete blog failed');
       }
-      console.log("delete blog success");
+      console.log('delete blog success');
       this.handleDeleteNewBlog.emit();
     } catch(error) {
-     console.log("delete blog err")
+     console.log('delete blog err');
     }
   }
 

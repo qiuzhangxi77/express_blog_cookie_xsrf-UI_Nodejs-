@@ -1,1 +1,1 @@
-export * from './Landing.module'
+export * from './Landing.module';

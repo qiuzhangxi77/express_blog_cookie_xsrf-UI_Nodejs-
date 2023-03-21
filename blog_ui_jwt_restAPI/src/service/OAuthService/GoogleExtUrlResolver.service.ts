@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 })
 export class GoogleExtUrlResolverService {
 
-constructor() { console.log("GoogleExtUrlResolverService start!")}
+constructor() { console.log('GoogleExtUrlResolverService start!');}
 resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) :Observable<any> {
     window.location.href =  route.queryParamMap.get('url') as string;
     return of(null);

@@ -23,6 +23,7 @@ export interface sidenavList {
 }
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'sidenav-Container',
   templateUrl: './SidenavContainer.component.html',
   styleUrls: ['./SidenavContainer.component.css'],
@@ -74,10 +75,11 @@ export class SidenavComponent implements OnInit, OnDestroy {
       this._oauthService.getGitHubAuthPage().subscribe( data => this.gitHubAuthUrl = data['authUrl']);
       this._oauthService.getGoogleAuthPage().subscribe( data => this.googleAuthUrl = data['authUrl']);
     } catch (err) {
-      console.log("getAuthPage err: ", err)
+      console.log('getAuthPage err: ', err);
     }
   }
 
+  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   public ngOnDestroy() {
   }
 
@@ -122,14 +124,14 @@ export class SidenavComponent implements OnInit, OnDestroy {
   public async BindGitHub() {
     localStorage.setItem('GitHubStatus', 'bind');
     localStorage.setItem('userID', this.userService.userInformation.userID);
-    console.log("this._router.navigate(['../GitHubAuth']: ", this.gitHubAuthUrl);
+    console.log('this._router.navigate([\'../GitHubAuth\']: ', this.gitHubAuthUrl);
     this._router.navigate(['/GitHubAuth'],{queryParams:{url: this.gitHubAuthUrl}});
   }
 
   public async BindGoogle() {
     localStorage.setItem('GoogleStatus', 'bind');
     localStorage.setItem('userID', this.userService.userInformation.userID);
-    console.log("this._router.navigate(['../GoogleAuth']: ", this.googleAuthUrl);
+    console.log('this._router.navigate([\'../GoogleAuth\']: ', this.googleAuthUrl);
     this._router.navigate(['/GoogleAuth'],{queryParams:{url: this.googleAuthUrl}});
   }
 }

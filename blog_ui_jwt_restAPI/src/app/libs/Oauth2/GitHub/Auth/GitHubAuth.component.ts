@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { OAuthServiceService } from 'src/service/OAuthService/OAuthService.service';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-GitHubAuth',
   templateUrl: './GitHubAuth.component.html',
   styleUrls: ['./GitHubAuth.component.css']
@@ -16,6 +17,7 @@ export class GitHubAuthComponent implements OnInit {
 
   ) { }
 
+  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   async ngOnInit() {
   }
 

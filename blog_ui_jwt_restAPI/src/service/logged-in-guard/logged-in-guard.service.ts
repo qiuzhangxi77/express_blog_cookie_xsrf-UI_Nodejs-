@@ -28,17 +28,17 @@ export class LoggedInGuardService implements CanActivate {
       if (!this._userService.userInformation.userID) {
         const res = await this._accountApiService.getUserData();
         if ( res.errno === 1) {
-          console.log("User have been not login and no have userInfo");
+          console.log('User have been not login and no have userInfo');
           return false;
         }
         this._userService.userInformation = res.data;
       }
-      console.log("User have been  login and  have userInfo");
-      return true
+      console.log('User have been  login and  have userInfo');
+      return true;
     } catch (error) {
-      console.log("get UserInfo failed");
+      console.log('get UserInfo failed');
       this._router.navigate(['/']);
-      return false
+      return false;
     }
   }
 

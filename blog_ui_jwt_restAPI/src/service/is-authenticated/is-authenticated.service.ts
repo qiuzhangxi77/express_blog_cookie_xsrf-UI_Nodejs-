@@ -27,7 +27,7 @@ export class IsAuthenticatedService implements CanActivate {
   public async canActivate(route: ActivatedRouteSnapshot) {
     if (await this.isUserLoggedIn()) {
       this._router.navigate(['0','home']);
-      return false
+      return false;
     }
     // Otherwise, allow them to continue (e.g., to the login page).
     return true;
@@ -42,14 +42,14 @@ export class IsAuthenticatedService implements CanActivate {
     try {
       const res = await  this._accountApiService.getUserData();
       if(res.errno) {
-        console.log("User have been not login and no have userInfo");
+        console.log('User have been not login and no have userInfo');
         return false;
       }
-      console.log("User have been  login and  have userInfo");
+      console.log('User have been  login and  have userInfo');
       this._userService.userInformation = res.data;
-      return true
+      return true;
     } catch (error) {
-      console.log("get UserInfo failed");
+      console.log('get UserInfo failed');
       return false;
     }
   }

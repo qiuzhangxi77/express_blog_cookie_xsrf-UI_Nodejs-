@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/component-selector */
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -25,10 +26,10 @@ export class GoogleRedirectComponent implements OnInit {
   public ngOnInit() {
     const GoogleStatus = localStorage.getItem('GoogleStatus');
     //注意 Redirect 会清掉service 相当于重启前端，尚不知道原因
-    console.log("GoogleRedirectComponent init");
-    console.log("GoogleStatus: ", GoogleStatus);
+    console.log('GoogleRedirectComponent init');
+    console.log('GoogleStatus: ', GoogleStatus);
     if(GoogleStatus === 'bind') {
-      this.bindByGoogle()
+      this.bindByGoogle();
     } else if(GoogleStatus === 'login') {
       this.loginByGoogle();
     }
@@ -40,36 +41,36 @@ export class GoogleRedirectComponent implements OnInit {
 
   public loginByGoogle() {
     try {
-      console.log("this._route: ", this._route);
+      console.log('this._route: ', this._route);
        this._route.queryParamMap.pipe(
         concatMap(
           x =>  {
-            console.log("concatMap x: ", x);
+            console.log('concatMap x: ', x);
             return this._oauthService.getGoogleAccessToken(x.get('code') as string );
           }
         )
       ).subscribe( async data => {
         // this._router.navigate(['gitLoginPage']);
-        console.log("using google user to login");
+        console.log('using google user to login');
         const result = await this._oauthService.getGoogleUserDetailsToLogin();
         if(result.errno) {
           console.log('get google access token and login failed');
-          const message = "User name or password is wrong ";
-          const action = "dismiss";
+          const message = 'User name or password is wrong ';
+          const action = 'dismiss';
           this._router.navigate(['/login']);
           this.openSnackBarWarn(message, action);
         } else {
-          console.log("Oauth User Login successful");
+          console.log('Oauth User Login successful');
           this._userService.userInformation = result.data.userInformation;
           this._userService.bindOauth(result.data.oauthID, result.data.oauth);
           this._router.navigate(['/',0,'home'], {
         });
         }
-      })
+      });
     } catch (err) {
-      console.log('get google access token and login failed')
-      const message = "User name or password is wrong "
-      const action = "dismiss"
+      console.log('get google access token and login failed');
+      const message = 'User name or password is wrong ';
+      const action = 'dismiss';
       this.openSnackBarWarn(message, action);
       this._router.navigate(['/login']);
     }
@@ -77,8 +78,8 @@ export class GoogleRedirectComponent implements OnInit {
   }
 
   public bindByGoogle() {
-    const userID = localStorage.getItem("userID");
-    console.log("binding: ", userID);
+    const userID = localStorage.getItem('userID');
+    console.log('binding: ', userID);
     try {
       this._route.queryParamMap.pipe(
         concatMap(
@@ -89,22 +90,22 @@ export class GoogleRedirectComponent implements OnInit {
         const result = await this._oauthService.getGoogleUserDetailsToBind(userID as string);
         if(result.errno) {
         console.log('Binding google user to blog user failed');
-        const message = "google user wrong or have been bound ";
-          const action = "dismiss";
+        const message = 'google user wrong or have been bound ';
+          const action = 'dismiss';
           this._router.navigate(['/',0,'home'], {});
           this.openSnackBarWarn(message, action);
         } else {
-          console.log("Oauth User Login successful");
+          console.log('Oauth User Login successful');
           this._userService.userInformation = result.data.userInformation;
           this._userService.bindOauth(result.data.oauthID, result.data.oauth);
           this._router.navigate(['/',0,'home'], {});
           }
-        })
+        });
       } 
     catch (err) {
-          console.log('Bind Google Failed')
-          const message = "Bind Google Failed! "
-          const action = "dismiss"
+          console.log('Bind Google Failed');
+          const message = 'Bind Google Failed! ';
+          const action = 'dismiss';
           this.openSnackBarWarn(message, action);
     }
     localStorage.removeItem('GoogleStatus');

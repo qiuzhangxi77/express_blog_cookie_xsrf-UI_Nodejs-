@@ -15,11 +15,11 @@ export interface userInformationFormat {
 export class UserService {
   
   private _userInformation:  userInformationFormat = {
-    username: "",
-    realname: "",
-    userID: "",
+    username: '',
+    realname: '',
+    userID: '',
     oauthID: undefined,
-    oauth: ""
+    oauth: ''
   };
 
  
@@ -48,9 +48,9 @@ export class UserService {
   }
 
   public clearUserInformation() {
-    this._userInformation.username = "";
-    this._userInformation.realname = "";
-    this._userInformation.userID = "data.userID";
+    this._userInformation.username = '';
+    this._userInformation.realname = '';
+    this._userInformation.userID = 'data.userID';
     this._userInformation.oauthID = undefined;
     this._userInformation.oauth = undefined;
   }

@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/component-selector */
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, NgModule, OnInit } from '@angular/core';
 import { AccountApiServiceService } from 'src/service/AccountApiService.service';
@@ -41,10 +42,11 @@ export class LoginContainerComponent implements OnInit, AfterViewInit {
       this._oauthService.getGitHubAuthPage().subscribe( data => this.gitHubAuthUrl = data['authUrl']);
       this._oauthService.getGoogleAuthPage().subscribe( data => this.googleAuthUrl = data['authUrl']);
     } catch (err) {
-      console.log("getAuthPage err: ", err)
+      console.log('getAuthPage err: ', err);
     }
   }
 
+  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngAfterViewInit() {
     // test 同源政策的限制 和 CSRF
 
@@ -97,27 +99,27 @@ export class LoginContainerComponent implements OnInit, AfterViewInit {
 
   public async OnSubmit() {
     const userInformation = {
-      username: this.inputForm.get("userControl")?.value,
-      password: this.inputForm.get("passwordControl")?.value,
-    }
+      username: this.inputForm.get('userControl')?.value,
+      password: this.inputForm.get('passwordControl')?.value,
+    };
     try {
       const result = await this._accountApiService.login(userInformation);
       //const data = await this._accountApiService.loginTest(userInformation);
       if(result.errno === 0) {
-        console.log("Login successful");
+        console.log('Login successful');
         // this._router.navigate(['api/blog-list']);
         this._userService.userInformation = result.data.userInformation;
         console.log('this._userService.userInformation = ', this._userService.userInformation);
         this._router.navigate(['/',0,'home'], {
         });
       } else {
-        console.log("Login failed")
-        const message = "User name or password is wrong "
-        const action = "dismiss"
+        console.log('Login failed');
+        const message = 'User name or password is wrong ';
+        const action = 'dismiss';
         this.openSnackBarWarn(message, action);
       }
     } catch (err) {
-      console.log("Login err: ", err)
+      console.log('Login err: ', err);
     }
   }
 
@@ -126,16 +128,16 @@ export class LoginContainerComponent implements OnInit, AfterViewInit {
     this.snackBarState = true;
     const valueChangeObj = this.inputForm.valueChanges.subscribe( ()=>{
       if( this._snackBar?._openedSnackBarRef) {
-        this._snackBar.dismiss()
+        this._snackBar.dismiss();
         this.snackBarState = false;
       }
-    })
+    });
 
     const actionObservable = this._snackBar._openedSnackBarRef?.onAction().subscribe( ()=>{
       this.snackBarState = false;
       valueChangeObj.unsubscribe();
       actionObservable?.unsubscribe();
-      })
+      });
   }
 
   public goToRegister() {

@@ -14,6 +14,7 @@ import { BlogComponentModule } from '../../BlogListContainer/BlogList/blog/blog/
 import { BlogContent } from '../../BlogListContainer/BlogList/BlogList.component';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-MyBlog',
   templateUrl: './MyBlog.component.html',
   styleUrls: ['./MyBlog.component.css']
@@ -25,7 +26,7 @@ export class MyBlogComponent implements OnInit {
     title: 'new blog title',
     content: 'new blog content',
     userID: ''
-  }
+  };
 
   constructor(
     public userService: UserService,
@@ -51,13 +52,13 @@ export class MyBlogComponent implements OnInit {
     try {
       const res =  await this.accountApiService.getMyBlogList(this.userService.userInformation.userID);
       if(res.errno === 1) {
-        console.log("get myBlogList failed")
+        console.log('get myBlogList failed');
       }
-      console.log("get myBlogList success")
+      console.log('get myBlogList success');
       this.myBlogArray = res.data;
       const aa =2;
     } catch (error) {
-      console.log("get myBlogList err")
+      console.log('get myBlogList err');
     }
   }
 
