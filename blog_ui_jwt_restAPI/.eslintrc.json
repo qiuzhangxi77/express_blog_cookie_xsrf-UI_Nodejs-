@@ -1,53 +1,73 @@
 {
-  "root": true,
-  "ignorePatterns": [
-    "projects/**/*"
-  ],
-  "overrides": [
-    {
-      "files": [
-        "*.ts"
-      ],
-      "parserOptions": {
-        "project": [
-          // 注意默认是："tsconfig.json"， 由于我们的项目使用了多一层目录，所以西需要修改
-          "*/tsconfig.json"
-        ],
-        "createDefaultProgram": true
-      },
-      "extends": [
-        "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates"
-      ],
-      "rules": {
-        "@angular-eslint/directive-selector": [
-          "error",
-          {
-            "type": "attribute",
-            "prefix": "app",
-            "style": "camelCase"
-          }
-        ],
-        "@angular-eslint/component-selector": [
-          "error",
-          {
-            "type": "element",
-            "prefix": "app",
-            "style": "kebab-case"
-          }
-        ],
-        "semi": ["error", "always"],
-        "quotes": ["error", "single"]
-      }
-    },
-    {
-      "files": [
-        "*.html"
-      ],
-      "extends": [
-        "plugin:@angular-eslint/template/recommended"
-      ],
-      "rules": {}
-    }
-  ]
+    "root": true,
+    "ignorePatterns": ["projects/**/*"],
+    "overrides": [
+        {
+            "files": ["*.ts"],
+            "parserOptions": {
+                "project": [
+                    // 注意默认是："tsconfig.json"， 由于我们的项目使用了多一层目录，所以西需要修改
+                    "*/tsconfig.json"
+                ],
+                "createDefaultProgram": true
+            },
+            "extends": [
+                "plugin:@angular-eslint/recommended",
+                "plugin:@angular-eslint/template/process-inline-templates",
+                "plugin:prettier/recommended"
+            ],
+            "rules": {
+                "@angular-eslint/directive-selector": [
+                    "error",
+                    {
+                        "type": "attribute",
+                        "prefix": "app",
+                        "style": "camelCase"
+                    }
+                ],
+                "@angular-eslint/component-selector": [
+                    "error",
+                    {
+                        "type": "element",
+                        "prefix": "app",
+                        "style": "kebab-case"
+                    }
+                ],
+                "no-extra-semi": "error"
+                // "semi": ["error", "always"]
+                // "quotes": ["error", "double"]
+            }
+        },
+        {
+            "files": ["*.html"],
+            "extends": ["plugin:@angular-eslint/template/recommended", "plugin:prettier/recommended"],
+            "rules": {}
+        }
+    ]
 }
+
+
+// plugin:prettier/recommended
+// node_modules/eslint-plugin-prettier/eslint-plugin-prettier.js
+// module.exports = {
+//     // plugin:prettier/recommended 就是加载这个
+//     configs: {
+//       recommended: {
+//         extends: ['prettier'],
+//         plugins: ['prettier'],
+//         rules: {
+//           'prettier/prettier': 'error',
+//           'arrow-body-style': 'off',
+//           'prefer-arrow-callback': 'off',
+//         },
+//       },
+//     },
+//     // 其他的
+// }
+
+// 1. extends: ['prettier']: 通过 eslint-config-prettier 关闭eslint和prettier 相冲突的规则。
+// 2. plugins: ['prettier']: 加载 eslint-plugin-prettier 插件，赋予 eslint 用 prettier 格式化文档的功能，但是真正开启这个规则的检查能力还是要通过rules配置。plugin插件主要是为eslint新增一些检查规则
+// 3. 'prettier/prettier': 'error': 让代码文件中不符合prettier格式化规则的都标记为错误，结合vscode-eslint插件便可以看到这些错误被标记为红色，当运行eslint --fix 命令时，将自动修复这些错误。
+// 4. arrow-body-style 和 prefer-arrow-callback: 这两个规则在eslint 和 prettier 中存在不可解决的冲突，所以关闭掉。
+
+// 至此, prettier 和 eslint 便可以无冲突协作，保存时候也能自动修复并格式化代码了。

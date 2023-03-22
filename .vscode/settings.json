@@ -1,0 +1,30 @@
+{
+  // for ESlint
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+    // 按照eslint规则格式化 相当于editor.formatOnSave的功能
+  },
+  // dbaeumer.vscode-eslint
+  // esbenp.prettier-vscode
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // 设置代码在保存的时候自动格式化 for Prettier
+  "editor.formatOnSave": true, // 保存时格式化
+  // "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // "[typescript]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // }
+}
+
+// prettier 可格式化 但不能报错误，需要报错误则需要将规则添加到eslint中
+// eslint 代码验证，会报错误，也可以通过source.fixAll.eslint 实现格式化
+
+// 有两种方式
+// eslint 和 prettier 配合起来使用，即eslint负责属于它的代码校验和格式化，prettier负责格式化
+
+// eslint 和 prettier 配合起来使用，将prettier规则添加到eslint中，然后使用eslint作为默认格式化，全程使用eslint格式化，既能报错也能格式化

@@ -1,0 +1,23 @@
+# don't ever format node_modules
+node_modules
+
+# don't format build output (make sure it's set to your correct build folder name)
+dist
+build
+
+docs
+e2e-test-results
+infrastructure
+screenshots
+
+# don't format nyc coverage output
+coverage
+combined-coverage
+
+.angular
+.github
+
+ci
+
+# don't format js files in our assets folder
+apps/web/src/assets/**/*.js
