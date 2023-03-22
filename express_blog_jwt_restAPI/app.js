@@ -52,8 +52,16 @@ const crossDomain = function(req, res, next) {
   //当需要设置cookies时 origin不能为*
   //处理跨域请求
   console.log('handle crossDomain:', req.method)
+  var orginList=[
+    "http://localhost:4200",
+    "http://127.0.0.1:5500"
+  ]
+  if(orginList.includes(req.headers.origin.toLowerCase())){
+    //设置允许跨域的域名，*代表允许任意域名跨域
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
+}
   // res.header('Access-Control-Allow-Origin', req.headers.origin)
-  res.header('Access-Control-Allow-Origin', 'http://localhost:4200')
+  // res.header('Access-Control-Allow-Origin', 'http://localhost:4200')
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, X-XSRF-TOKEN')
   res.header('Access-Control-Allow-Methods', 'POST,GET,OPTIONS,DELETE,PUT')
   res.header('Access-Control-Allow-Credentials', true)
