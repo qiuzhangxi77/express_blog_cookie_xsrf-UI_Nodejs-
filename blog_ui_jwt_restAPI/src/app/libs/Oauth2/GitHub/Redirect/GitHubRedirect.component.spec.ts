@@ -5,23 +5,22 @@ import { DebugElement } from '@angular/core';
 import { GitHubRedirectComponent } from './GitHubRedirect.component';
 
 describe('GitHubRedirectComponent', () => {
-  let component: GitHubRedirectComponent;
-  let fixture: ComponentFixture<GitHubRedirectComponent>;
+    let component: GitHubRedirectComponent;
+    let fixture: ComponentFixture<GitHubRedirectComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ GitHubRedirectComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [GitHubRedirectComponent],
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(GitHubRedirectComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(GitHubRedirectComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

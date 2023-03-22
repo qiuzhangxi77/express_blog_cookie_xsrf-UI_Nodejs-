@@ -1,28 +1,24 @@
 <mat-card class="w-5/6 px-10 py-6 my-20 mx-60">
-  <mat-card-title>
-    <h3>MyBlog</h3>
-  </mat-card-title>
-  <mat-card-content>
-    <ng-container *ngFor="let blog of myBlogArray; let i = index">
-      <app-blog [blogData]="blog" (handleDeleteNewBlog)="updateMyBlogList()" [readOnly]="false"></app-blog>
-    </ng-container>
- </mat-card-content>
+    <mat-card-title>
+        <h3>MyBlog</h3>
+    </mat-card-title>
+    <mat-card-content>
+        <ng-container *ngFor="let blog of myBlogArray; let i = index">
+            <app-blog [blogData]="blog" (handleDeleteNewBlog)="updateMyBlogList()" [readOnly]="false"></app-blog>
+        </ng-container>
+    </mat-card-content>
 </mat-card>
 <div class="mx-60" *ngIf="!addNewBlog">
-  <button mat-raised-button color="primary" (click)="addingNewBlog()" >
-    <mat-icon>add</mat-icon>
-    <span>
-      Add new blog
-    </span>
-  </button>
+    <button mat-raised-button color="primary" (click)="addingNewBlog()">
+        <mat-icon>add</mat-icon>
+        <span> Add new blog </span>
+    </button>
 </div>
 <mat-card class="w-5/6 px-10 py-6 my-20 mx-60" *ngIf="addNewBlog">
-  <mat-card-title>
-    <h3>new Blog</h3>
-  </mat-card-title>
-  <mat-card-content>
-    <app-blog [blogData]="newBlog" [addNewBlog]="true" (handleAddNewBlog)="finishAddingNewBlog($event)"></app-blog>
- </mat-card-content>
+    <mat-card-title>
+        <h3>new Blog</h3>
+    </mat-card-title>
+    <mat-card-content>
+        <app-blog [blogData]="newBlog" [addNewBlog]="true" (handleAddNewBlog)="finishAddingNewBlog($event)"></app-blog>
+    </mat-card-content>
 </mat-card>
-
-

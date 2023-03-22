@@ -18,71 +18,71 @@ import { RegisterContainerComponent } from './RegisterContainer/RegisterContaine
 import { SidenavComponent } from './SidenavContainer/SidenavContainer.component';
 
 const routes: Routes = [
-  {
-    path:'',
-    component: LandingPageComponent,
-    canActivate: [IsAuthenticatedService]
-  },
-  {
-    path:'login',
-    component: LoginContainerComponent,
-    canActivate: [IsAuthenticatedService]
-  },
-  {
-    path:'register',
-    component: RegisterContainerComponent,
-  },
-  //用于Oauth2的RedirectComponent 
-  {
-    path:'GitHubRedirect',
-    component: GitHubRedirectComponent
-  },
-  {
-    // a dummy component GitAuthComponent corresponding to this path.
-    // because it doesnt do any work. We need this component just for the sake of navigation.
-    path:'GitHubAuth',
-    component: GitHubAuthComponent,
-    resolve: {
-      url: GitHubExtUrlResolverService
-    }
-  },
-  {
-    path:'GoogleRedirect',
-    component: GoogleRedirectComponent
-  },
-  {
-    // a dummy component GitAuthComponent corresponding to this path.
-    // because it doesnt do any work. We need this component just for the sake of navigation.
-    path:'GoogleAuth',
-    component: GoogleAuthComponent,
-    resolve: {
-      url: GoogleExtUrlResolverService
-    }
-  },
-  {
-    path: ':contextIndex',
-    component: SidenavComponent,
-    canActivate: [LoggedInGuardService],
-    children: [
-      {
-        path:'home',
-        redirectTo: 'api/blog-list',
-        pathMatch: 'full'
-      },
-      {
-        path:'api/blog-list',
-        component: BlogListComponent
-      },
-      {
-        path:'api/myBlog-list',
-        component: MyBlogComponent
-      },
-    ]
-  }
+    {
+        path: '',
+        component: LandingPageComponent,
+        canActivate: [IsAuthenticatedService],
+    },
+    {
+        path: 'login',
+        component: LoginContainerComponent,
+        canActivate: [IsAuthenticatedService],
+    },
+    {
+        path: 'register',
+        component: RegisterContainerComponent,
+    },
+    //用于Oauth2的RedirectComponent
+    {
+        path: 'GitHubRedirect',
+        component: GitHubRedirectComponent,
+    },
+    {
+        // a dummy component GitAuthComponent corresponding to this path.
+        // because it doesnt do any work. We need this component just for the sake of navigation.
+        path: 'GitHubAuth',
+        component: GitHubAuthComponent,
+        resolve: {
+            url: GitHubExtUrlResolverService,
+        },
+    },
+    {
+        path: 'GoogleRedirect',
+        component: GoogleRedirectComponent,
+    },
+    {
+        // a dummy component GitAuthComponent corresponding to this path.
+        // because it doesnt do any work. We need this component just for the sake of navigation.
+        path: 'GoogleAuth',
+        component: GoogleAuthComponent,
+        resolve: {
+            url: GoogleExtUrlResolverService,
+        },
+    },
+    {
+        path: ':contextIndex',
+        component: SidenavComponent,
+        canActivate: [LoggedInGuardService],
+        children: [
+            {
+                path: 'home',
+                redirectTo: 'api/blog-list',
+                pathMatch: 'full',
+            },
+            {
+                path: 'api/blog-list',
+                component: BlogListComponent,
+            },
+            {
+                path: 'api/myBlog-list',
+                component: MyBlogComponent,
+            },
+        ],
+    },
 ];
 
 @NgModule({
-  imports: [ RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
-export class LandingRoutingModule { }
+export class LandingRoutingModule {}

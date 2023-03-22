@@ -6,23 +6,22 @@ import { DebugElement } from '@angular/core';
 import { GoogleRedirectComponent } from './GoogleRedirect.component';
 
 describe('GoogleRedirectComponent', () => {
-  let component: GoogleRedirectComponent;
-  let fixture: ComponentFixture<GoogleRedirectComponent>;
+    let component: GoogleRedirectComponent;
+    let fixture: ComponentFixture<GoogleRedirectComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ GoogleRedirectComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [GoogleRedirectComponent],
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(GoogleRedirectComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(GoogleRedirectComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

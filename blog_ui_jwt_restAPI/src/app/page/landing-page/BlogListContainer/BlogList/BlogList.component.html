@@ -1,10 +1,10 @@
 <mat-card class="w-5/6 px-10 py-6 my-20 mx-60">
-  <mat-card-title>
-    <h3>BlogList</h3>
-  </mat-card-title>
-  <mat-card-content>
-    <ng-container *ngFor="let blog of blogArray; let i = index">
-      <app-blog [blogData]="blog"></app-blog>
-    </ng-container>
- </mat-card-content>
+    <mat-card-title>
+        <h3>BlogList</h3>
+    </mat-card-title>
+    <mat-card-content>
+        <ng-container *ngFor="let blog of blogArray; let i = index">
+            <app-blog [blogData]="blog"></app-blog>
+        </ng-container>
+    </mat-card-content>
 </mat-card>

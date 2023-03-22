@@ -4,19 +4,19 @@ import { IsAuthenticatedService } from 'src/service/is-authenticated/is-authenti
 import { LandingPageComponent } from './page/landing-page/landing-page.component';
 
 const routes: Routes = [
-  // {
-  //   path:'',
-  //   component: LandingPageComponent,
-  // },
-  {
-    path: '',
-    loadChildren: () => import('./page/landing-page').then(m => m.LandingModule)
-  }
+    // {
+    //   path:'',
+    //   component: LandingPageComponent,
+    // },
+    {
+        path: '',
+        loadChildren: () => import('./page/landing-page').then((m) => m.LandingModule),
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
 // export const routing: ModuleWithProviders<any> = RouterModule.forRoot(routes);

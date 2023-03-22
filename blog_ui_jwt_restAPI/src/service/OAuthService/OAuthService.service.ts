@@ -4,112 +4,103 @@ import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class OAuthServiceService {
+    constructor(private http: HttpClient) {}
 
-  constructor(
-    private http:HttpClient
-  ) { }
+    // GitHub Oauth2
+    getGitHubAuthPage(): Observable<any> {
+        const endpoint = 'http://localhost:8000/oauth/GitHubAuthPage';
+        return this.http.get(endpoint, { withCredentials: true }).pipe(
+            map((res: any) => {
+                return res;
+            })
+        );
+        // .toPromise();
+    }
 
-  // GitHub Oauth2
-  getGitHubAuthPage(): Observable<any>{
-    const endpoint = 'http://localhost:8000/oauth/GitHubAuthPage';
-      return this.http
-              .get(endpoint, {withCredentials: true})
-              .pipe(
-                map( (res:any) => {
-                  return res;
+    getGitHubAccessToken(auth_code: string) {
+        const endpoint = 'http://localhost:8000/oauth/GitHubGetAccessToken';
+        return this.http
+            .post(endpoint, { code: auth_code }, { withCredentials: true })
+            .pipe(
+                map((res: any) => {
+                    return res;
                 })
-              );
-              // .toPromise();
-  }
+            )
+            .toPromise();
+    }
 
-  getGitHubAccessToken(auth_code:string){
-    const endpoint = 'http://localhost:8000/oauth/GitHubGetAccessToken';
-      return this.http
-              .post(endpoint,{code:auth_code}, {withCredentials: true})
-              .pipe(
-                map( (res:any) => {
-                  return res;
+    getGitHubUserDetailsToLogin() {
+        const endpoint = 'http://localhost:8000/oauth/loginByGitHub';
+        return this.http
+            .get(endpoint, { withCredentials: true })
+            .pipe(
+                map((res: any) => {
+                    return res;
                 })
-              )
-              .toPromise();
-  }
+            )
+            .toPromise();
+    }
 
-  getGitHubUserDetailsToLogin(){
-    const endpoint = 'http://localhost:8000/oauth/loginByGitHub';
-      return this.http
-              .get(endpoint, {withCredentials: true})
-              .pipe(
-                map( (res:any) => {
-                  return res;
+    getGitHubUserDetailsToBind(userID: string) {
+        const endpoint = `http://localhost:8000/oauth/bindByGitHub/${userID}`;
+        return this.http
+            .get(endpoint, { withCredentials: true })
+            .pipe(
+                map((res: any) => {
+                    return res;
                 })
-              )
-              .toPromise();
-  }
+            )
+            .toPromise();
+    }
 
-  getGitHubUserDetailsToBind(userID: string){
-    const endpoint = `http://localhost:8000/oauth/bindByGitHub/${userID}`;
-      return this.http
-              .get(endpoint, {withCredentials: true})
-              .pipe(
-                map( (res:any) => {
-                  return res;
+    // Google Oauth2
+    getGoogleAuthPage(): Observable<any> {
+        const endpoint = 'http://localhost:8000/oauth/GoogleAuthPage';
+        return this.http.get(endpoint, { withCredentials: true }).pipe(
+            map((res: any) => {
+                return res;
+            })
+        );
+        // .toPromise();
+    }
+
+    getGoogleAccessToken(auth_code: string) {
+        const endpoint = 'http://localhost:8000/oauth/GoogleGetAccessToken';
+        console.log('getGoogleAccessToken code: ', auth_code);
+        return this.http
+            .post(endpoint, { code: auth_code }, { withCredentials: true })
+            .pipe(
+                map((res: any) => {
+                    return res;
                 })
-              )
-              .toPromise();
-  }
+            )
+            .toPromise();
+    }
 
-
-  // Google Oauth2
-  getGoogleAuthPage(): Observable<any>{
-    const endpoint = 'http://localhost:8000/oauth/GoogleAuthPage';
-      return this.http
-              .get(endpoint, {withCredentials: true})
-              .pipe(
-                map( (res:any) => {
-                  return res;
+    getGoogleUserDetailsToLogin() {
+        const endpoint = 'http://localhost:8000/oauth/loginByGoogle';
+        return this.http
+            .get(endpoint, { withCredentials: true })
+            .pipe(
+                map((res: any) => {
+                    return res;
                 })
-              );
-              // .toPromise();
-  }
+            )
+            .toPromise();
+    }
 
-  getGoogleAccessToken(auth_code:string){
-    const endpoint = 'http://localhost:8000/oauth/GoogleGetAccessToken';
-    console.log('getGoogleAccessToken code: ', auth_code);
-      return this.http
-              .post(endpoint,{code:auth_code}, {withCredentials: true})
-              .pipe(
-                map( (res:any) => {
-                  return res;
+    getGoogleUserDetailsToBind(userID: string) {
+        const endpoint = `http://localhost:8000/oauth/bindByGoogle/${userID}`;
+        return this.http
+            .get(endpoint, { withCredentials: true })
+            .pipe(
+                map((res: any) => {
+                    return res;
                 })
-              )
-              .toPromise();
-  }
-
-  getGoogleUserDetailsToLogin(){
-    const endpoint = 'http://localhost:8000/oauth/loginByGoogle';
-      return this.http
-              .get(endpoint, {withCredentials: true})
-              .pipe(
-                map( (res:any) => {
-                  return res;
-                })
-              )
-              .toPromise();
-  }
-
-  getGoogleUserDetailsToBind(userID: string){
-    const endpoint = `http://localhost:8000/oauth/bindByGoogle/${userID}`;
-      return this.http
-              .get(endpoint, {withCredentials: true})
-              .pipe(
-                map( (res:any) => {
-                  return res;
-                })
-              )
-              .toPromise();
-  }
-
+            )
+            .toPromise();
+    }
 }

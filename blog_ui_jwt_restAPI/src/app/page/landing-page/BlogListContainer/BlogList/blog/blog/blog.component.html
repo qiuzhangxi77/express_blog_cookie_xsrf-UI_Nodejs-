@@ -1,87 +1,98 @@
 <div class="flex justify-center mt-2">
-  <div class="w-1/2 pb-6 border border-solid rounded border-neutral bg-slate-300">
-    <div class="flex items-center justify-between leading-10">
-      <div class="flex cursor-pointer jusify-center">
-        <div *ngIf="!addNewBlog">
-          <button mat-icon-button  (click)="toggleExpanded()">
-            <mat-icon> {{ isExpanded? 'expand_more' : 'chevron_right' }}</mat-icon>
-          </button>
+    <div class="w-1/2 pb-6 border border-solid rounded border-neutral bg-slate-300">
+        <div class="flex items-center justify-between leading-10">
+            <div class="flex cursor-pointer jusify-center">
+                <div *ngIf="!addNewBlog">
+                    <button mat-icon-button (click)="toggleExpanded()">
+                        <mat-icon> {{ isExpanded ? 'expand_more' : 'chevron_right' }}</mat-icon>
+                    </button>
+                </div>
+                <div *ngIf="!isEdit && !addNewBlog">
+                    <p>
+                        <strong>{{ blogData.title }}</strong>
+                    </p>
+                </div>
+                <div *ngIf="isEdit || addNewBlog">
+                    <mat-form-field appearance="outline">
+                        <mat-label>title</mat-label>
+                        <input matInput [(ngModel)]="blogData.title" required />
+                        <mat-error> title required </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div *ngIf="!addNewBlog" class="flex items-center">
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu mat-icon-button #menu="matMenu">
+                    <button mat-menu-item class="w-56 h-10 hover:bg-menu-hover hover:text-text-primary">collect</button>
+                    <button mat-menu-item (click)="toggleExpanded()" class="w-56 h-10 hover:bg-menu-hover hover:text-text-primary">
+                        shield
+                    </button>
+                    <button
+                        mat-menu-item
+                        (click)="editMode()"
+                        [disabled]="readOnly"
+                        class="w-56 h-10 hover:bg-menu-hover hover:text-text-primary">
+                        edit
+                    </button>
+                    <button
+                        mat-menu-item
+                        (click)="delete()"
+                        [disabled]="readOnly"
+                        class="w-56 h-10 hover:bg-menu-hover hover:text-text-primary">
+                        delete
+                    </button>
+                </mat-menu>
+            </div>
         </div>
-        <div *ngIf="!isEdit && !addNewBlog">
-          <p><strong>{{blogData.title}}</strong></p>
+        <div *ngIf="isExpanded">
+            <div class="flex">
+                <div class="flex flex-col w-28">
+                    <img class="w-20 h-20 place-self-center" src="assets/profile.jpeg" />
+                    <p class="place-self-center">{{ blogData.author }}</p>
+                </div>
+                <mat-card class="w-3/4 mr-4 bg-slate-100">
+                    <div *ngIf="!isEdit && !addNewBlog">
+                        <p>{{ blogData.content }}</p>
+                    </div>
+                    <div *ngIf="isEdit || addNewBlog">
+                        <mat-form-field appearance="outline">
+                            <mat-label>content</mat-label>
+                            <input matInput [(ngModel)]="blogData.content" required />
+                            <mat-error> content required </mat-error>
+                        </mat-form-field>
+                    </div>
+                </mat-card>
+            </div>
+            <div *ngIf="isEdit" class="flex w-1/2 mt-4">
+                <div class="">
+                    <button mat-raised-button color="primary" (click)="cancelEdit()">Cancel</button>
+                </div>
+                <div class="pl-6">
+                    <button
+                        mat-raised-button
+                        [disabled]="blogData.content && blogData.title ? false : true"
+                        color="primary"
+                        (click)="update()">
+                        Update
+                    </button>
+                </div>
+            </div>
+            <div *ngIf="addNewBlog" class="flex w-1/2 mt-4">
+                <div>
+                    <button mat-raised-button color="primary" (click)="cancelAddNewBlog()">Cancel</button>
+                </div>
+                <div class="pl-6">
+                    <button
+                        mat-raised-button
+                        [disabled]="blogData.content && blogData.title ? false : true"
+                        color="primary"
+                        (click)="createNewBlog()">
+                        Create
+                    </button>
+                </div>
+            </div>
         </div>
-        <div *ngIf="isEdit || addNewBlog">
-          <mat-form-field appearance="outline">
-            <mat-label>title</mat-label>
-            <input matInput [(ngModel)]="blogData.title" required  />
-            <mat-error>
-                title required
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-      <div *ngIf="!addNewBlog" class="flex items-center">
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu mat-icon-button #menu="matMenu">
-          <button mat-menu-item 
-              class="w-56 h-10 hover:bg-menu-hover hover:text-text-primary">collect</button>
-          <button mat-menu-item  (click)="toggleExpanded()"
-              class="w-56 h-10 hover:bg-menu-hover hover:text-text-primary">shield</button>
-          <button mat-menu-item  (click)="editMode()" [disabled]="readOnly"
-              class="w-56 h-10 hover:bg-menu-hover hover:text-text-primary">edit</button>
-          <button mat-menu-item  (click)="delete()" [disabled]="readOnly"
-              class="w-56 h-10 hover:bg-menu-hover hover:text-text-primary">delete</button>
-        </mat-menu>
-      </div>
     </div>
-    <div *ngIf="isExpanded">
-      <div class="flex">
-        <div class="flex flex-col w-28">
-          <img class="w-20 h-20 place-self-center" src="assets/profile.jpeg"/> 
-          <p class="place-self-center">{{blogData.author}}</p>
-        </div>
-        <mat-card class="w-3/4 mr-4 bg-slate-100" >
-          <div *ngIf="!isEdit && !addNewBlog">
-            <p>{{blogData.content}}</p>
-          </div>
-          <div *ngIf="isEdit || addNewBlog">
-            <mat-form-field appearance="outline">
-              <mat-label>content</mat-label>
-              <input matInput [(ngModel)]="blogData.content"  required />
-              <mat-error>
-                  content required
-              </mat-error>
-            </mat-form-field>
-          </div>
-        </mat-card>
-      </div>
-      <div *ngIf="isEdit" class="flex w-1/2 mt-4 ">
-        <div class="">
-          <button mat-raised-button color="primary"  (click)="cancelEdit()">
-            Cancel
-          </button>
-        </div>
-        <div class="pl-6">
-          <button mat-raised-button [disabled]="(blogData.content && blogData.title) ? false: true" color="primary" (click)="update()">
-            Update
-          </button>
-        </div>
-      </div>
-      <div *ngIf="addNewBlog" class="flex w-1/2 mt-4 "> 
-        <div>
-          <button mat-raised-button color="primary"  (click)="cancelAddNewBlog()">
-          Cancel
-          </button>
-        </div>
-        <div class="pl-6">
-          <button mat-raised-button [disabled]="(blogData.content && blogData.title)? false: true" color="primary" (click)="createNewBlog()">
-           Create
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
-

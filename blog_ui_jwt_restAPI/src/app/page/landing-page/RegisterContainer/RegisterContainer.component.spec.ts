@@ -6,23 +6,22 @@ import { DebugElement } from '@angular/core';
 import { RegisterContainerComponent } from './RegisterContainer.component';
 
 describe('RegisterContainerComponent', () => {
-  let component: RegisterContainerComponent;
-  let fixture: ComponentFixture<RegisterContainerComponent>;
+    let component: RegisterContainerComponent;
+    let fixture: ComponentFixture<RegisterContainerComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ RegisterContainerComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [RegisterContainerComponent],
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(RegisterContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(RegisterContainerComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

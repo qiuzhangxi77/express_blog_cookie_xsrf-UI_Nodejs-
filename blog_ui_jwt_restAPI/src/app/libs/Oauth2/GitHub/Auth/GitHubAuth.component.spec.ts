@@ -5,23 +5,22 @@ import { DebugElement } from '@angular/core';
 import { GitHubAuthComponent } from './GitHubAuth.component';
 
 describe('GitAuthComponent', () => {
-  let component: GitHubAuthComponent;
-  let fixture: ComponentFixture<GitHubAuthComponent>;
+    let component: GitHubAuthComponent;
+    let fixture: ComponentFixture<GitHubAuthComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ GitHubAuthComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [GitHubAuthComponent],
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(GitHubAuthComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(GitHubAuthComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

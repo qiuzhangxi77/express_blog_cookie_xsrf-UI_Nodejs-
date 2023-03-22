@@ -3,13 +3,14 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { Observable, of } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
-
 export class GitHubExtUrlResolverService implements Resolve<any> {
-constructor() { console.log('GitHubExtUrlResolverService start!');}
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) :Observable<any> {
-    window.location.href =  route.queryParamMap.get('url') as string;
-    return of(null);
-  }
+    constructor() {
+        console.log('GitHubExtUrlResolverService start!');
+    }
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
+        window.location.href = route.queryParamMap.get('url') as string;
+        return of(null);
+    }
 }

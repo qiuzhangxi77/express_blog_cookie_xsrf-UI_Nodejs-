@@ -7,14 +7,14 @@ import { LandingPageComponent, LandingPageComponentModule } from './landing-page
 import { LandingRoutingModule } from './landing.routing';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    LoginContainerModule,
-    SidenavComponentModule,
-    BlogListComponentModule,
-    LandingPageComponentModule,
-    LandingRoutingModule
-  ],
-  exports:[LandingPageComponent]
+    imports: [
+        CommonModule,
+        LoginContainerModule,
+        SidenavComponentModule,
+        BlogListComponentModule,
+        LandingPageComponentModule,
+        LandingRoutingModule,
+    ],
+    exports: [LandingPageComponent],
 })
-export class LandingModule { }
+export class LandingModule {}
