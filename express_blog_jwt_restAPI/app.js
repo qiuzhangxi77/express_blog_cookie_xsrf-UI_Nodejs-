@@ -73,7 +73,8 @@ const crossDomain = function(req, res, next) {
   req.method === 'OPTIONS' ? res.status(204).end() : next()
 }
 
-app.use(crossDomain);
+// 改用nginx反向代理处理跨域问题
+// app.use(crossDomain);
 
 
 //处理login-session
@@ -161,8 +162,8 @@ const verifyXSRF = function(req, res, next) {
 // app.use('/', indexRouter);
 app.use('/api/user', usersRouter);
 app.use('/api/blog', verifySession, verifyXSRF,  blogRouter);
-app.use('/oauth',  oauthGitHubRouter);
-app.use('/oauth',  oauthGoogleRouter);
+app.use('/api/oauth',  oauthGitHubRouter);
+app.use('/api/oauth',  oauthGoogleRouter);
 
 
 // catch 404 and forward to error handler

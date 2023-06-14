@@ -12,7 +12,8 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '8000');
+// 注意这里使用8000端口，nginx代理的时候会出错，原因是和host的localhost配置相关，改成其它端口即可
+var port = normalizePort(process.env.PORT || '8005');
 app.set('port', port);
 
 /**
