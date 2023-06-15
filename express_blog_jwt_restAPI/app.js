@@ -59,7 +59,7 @@ const crossDomain = function(req, res, next) {
   ]
   // "http://192.168.5.121:5500"
   // 模拟局域网内客户的登录
-  if(orginList.includes(req.headers.origin.toLowerCase())){
+  if(orginList.includes(req.headers?.origin?.toLowerCase())){
     //设置允许跨域的域名，*代表允许任意域名跨域
     res.header('Access-Control-Allow-Origin', req.headers.origin);
 }

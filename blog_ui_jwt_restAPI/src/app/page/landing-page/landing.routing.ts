@@ -66,15 +66,15 @@ const routes: Routes = [
         children: [
             {
                 path: 'home',
-                redirectTo: 'api/blog-list',
+                redirectTo: 'blog-list',
                 pathMatch: 'full',
             },
             {
-                path: 'api/blog-list',
+                path: 'blog-list',
                 component: BlogListComponent,
             },
             {
-                path: 'api/myBlog-list',
+                path: 'myBlog-list',
                 component: MyBlogComponent,
             },
         ],

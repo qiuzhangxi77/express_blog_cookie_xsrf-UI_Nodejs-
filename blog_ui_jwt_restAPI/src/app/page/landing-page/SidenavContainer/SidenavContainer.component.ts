@@ -36,22 +36,22 @@ export class SidenavComponent implements OnInit, OnDestroy {
         {
             name: 'My Blog',
             icon: 'contact_page',
-            route: 'api/myBlog-list',
+            route: 'myBlog-list',
         },
         {
             name: 'Blog List',
             icon: 'view_list',
-            route: 'api/blog-list',
+            route: 'blog-list',
         },
         {
             name: 'Personal Center',
             icon: 'account_circle',
-            route: 'api/personal-center',
+            route: 'personal-center',
         },
         {
             name: 'Settings',
             icon: 'settings',
-            route: 'api/settings',
+            route: 'settings',
         },
     ];
     public loginOrigin = '';
