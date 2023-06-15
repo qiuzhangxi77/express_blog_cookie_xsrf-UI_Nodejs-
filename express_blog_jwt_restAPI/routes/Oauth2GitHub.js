@@ -4,7 +4,7 @@ const axios = require('axios');
 const {genUserID, genXSRFId} = require('../utils/cryp');
 const { SuccessModel, ErrorModel } = require('../model/resModel')
 const CLIENT_ID = '5dfd07abb7e13606fa90';
-const REDIRECT_URI = 'http://localhost:4200/GitHubRedirect';
+const REDIRECT_URI = 'http://localhost:4005/GitHubRedirect';
 const CLIENT_SECRET = 'df966d1a546fe47e3e895090fa03b5c70c6912ff';
 var access_token = '';
 var jwt = require('jsonwebtoken');
@@ -32,11 +32,16 @@ router.get('/GitHubAuthPage',function(req, res, next){
 router.post('/GitHubGetAccessToken', function(req, res, next){
   // let state = req.headers['x-xsrf-token'];
   // console.log('getAccessToken state:', state)
+  // axios({
+  // url:'https://github.com/login/oauth/access_token?client_id='+CLIENT_ID+'&client_secret='+CLIENT_SECRET+'&code='+req.body.code+'&redirect_uri='+REDIRECT_URI+'&state='+state,
+  // method:'POST',
+  // headers:{'Accept': 'application/json'}
+  // })
   axios({
-  url:'https://github.com/login/oauth/access_token?client_id='+CLIENT_ID+'&client_secret='+CLIENT_SECRET+'&code='+req.body.code+'&redirect_uri='+REDIRECT_URI+'&state='+state,
-  method:'POST',
-  headers:{'Accept': 'application/json'}
-  })
+    url:'https://github.com/login/oauth/access_token?client_id='+CLIENT_ID+'&client_secret='+CLIENT_SECRET+'&code='+req.body.code+'&redirect_uri='+REDIRECT_URI,
+    method:'POST',
+    headers:{'Accept': 'application/json'}
+    })
   .then(function(resp){
     if(resp.data.access_token){
     // req.session.token = resp.data.access_token;

@@ -6,7 +6,7 @@ const { SuccessModel, ErrorModel } = require('../model/resModel')
 
 const CLIENT_ID = '268444631280-cvjt1i0vaj29asbdnte8bjgqhhka4gp5.apps.googleusercontent.com';
 const CLIENT_SECRET = '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';
-const REDIRECT_URI = 'http://localhost:4200/GoogleRedirect';
+const REDIRECT_URI = 'http://localhost:4005/GoogleRedirect';
 
 var access_token = '';
 var jwt = require('jsonwebtoken');
@@ -41,23 +41,19 @@ router.post('/GoogleGetAccessToken', function(req, res, next){
     // let state = req.headers['x-xsrf-token'];
     // console.log('getAccessToken state:', state);
     console.log("req.body.code: ", req.body.code);
-    // axios({
-    // url:'https://oauth2.googleapis.com/token?client_id='+CLIENT_ID+'&client_secret='+CLIENT_SECRET+'&code='+req.body.code+'&redirect_uri='+
-    // REDIRECT_URI+'&grant_type=authorization_code' + '&state=' + state,
-    // method:'POST',
-    // headers:{'Accept': 'application/json'}
-    // })
+    // 注意需要vpn才能连接
     axios.post("https://oauth2.googleapis.com/token", {
-      client_id: CLIENT_ID,
-      client_secret: CLIENT_SECRET,
-      code: req.body.code,
-      redirect_uri: REDIRECT_URI,
-      grant_type: "authorization_code",
+      'code': req.body.code,
+      'client_id': CLIENT_ID,
+      'client_secret': CLIENT_SECRET,
+      'redirect_uri': REDIRECT_URI,
+      'grant_type': "authorization_code",
     })
     .then(function(resp){
       if(resp.data.access_token){
+        console.log("success get access_token: ", access_token);
         // req.session.token = resp.data.access_token;
-        access_token = resp.data.access_token;;
+        access_token = resp.data.access_token;
       }
       // res.send(resp.data);
       //不需要传出access_token 因为验证还是用jwt生成token，即授权的时候用access token取回来的user信息注册或绑定一个账号，然后用jwt生成token
