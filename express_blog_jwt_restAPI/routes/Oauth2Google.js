@@ -26,7 +26,7 @@ const secretOrPrivateKeyForCSRF = 'csrf77'
 router.get('/GoogleAuthPage',function(req, res, next){ 
     console.log('GoogleAuthPage');
     let state = genUserID();
-    res.cookie('XSRF-TOKEN', state); 
+    // res.cookie('XSRF-TOKEN', state); 
     // scope=openid%20profile%20email
     // const scope = ["openid", "https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile"];
     // const scope = "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email openid";
@@ -38,8 +38,8 @@ router.get('/GoogleAuthPage',function(req, res, next){
 })
 
 router.post('/GoogleGetAccessToken', function(req, res, next){
-    let state = req.headers['x-xsrf-token'];
-    console.log('getAccessToken state:', state);
+    // let state = req.headers['x-xsrf-token'];
+    // console.log('getAccessToken state:', state);
     console.log("req.body.code: ", req.body.code);
     // axios({
     // url:'https://oauth2.googleapis.com/token?client_id='+CLIENT_ID+'&client_secret='+CLIENT_SECRET+'&code='+req.body.code+'&redirect_uri='+

@@ -122,6 +122,7 @@ const verifySession = function(req, res, next) {
   if(req.session?.access_token) {
     let payLoad;
     try{
+      console.log('req.session.access_token: ' , req.session.access_token)
         payLoad = jwt.verify(req.session.access_token, secretOrPrivateKey);
         console.log('pass token verify, and get the user data' , payLoad)
         return next()

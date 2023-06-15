@@ -23,15 +23,15 @@ const secretOrPrivateKeyForCSRF = 'csrf77'
 router.get('/GitHubAuthPage',function(req, res, next){ 
   console.log('AuthPage');
   let state = genUserID();
-  res.cookie('XSRF-TOKEN', state); 
+  // res.cookie('XSRF-TOKEN', state); 
   res.send({authUrl: 'https://github.com/login/oauth/authorize?client_id=' + CLIENT_ID + '&redirect_uri=' + REDIRECT_URI + 
   '&scope=read:user&allow_signup=' + true + '&state=' + state }); 
 })
 
 
 router.post('/GitHubGetAccessToken', function(req, res, next){
-  let state = req.headers['x-xsrf-token'];
-  console.log('getAccessToken state:', state)
+  // let state = req.headers['x-xsrf-token'];
+  // console.log('getAccessToken state:', state)
   axios({
   url:'https://github.com/login/oauth/access_token?client_id='+CLIENT_ID+'&client_secret='+CLIENT_SECRET+'&code='+req.body.code+'&redirect_uri='+REDIRECT_URI+'&state='+state,
   method:'POST',

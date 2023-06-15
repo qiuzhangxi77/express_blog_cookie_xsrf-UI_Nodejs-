@@ -27,24 +27,26 @@ router.post('/login', function(req, res, next) {
                 username: data.username,
                 realname: data.realname,
                 userID: data.userID,
-                origin: loginOrigin
+                origin: loginOrigin,
             }
-            if(data.GitHubID) {
+            if(data.oauthID) {
                 payLoad = {
                     username: data.username,
                     realname: data.realname,
                     userID: data.userID,
-                    GitHubID: data.GitHubID,
-                    origin: loginOrigin
+                    payLoad: data.payLoad,
+                    origin: loginOrigin,
+                    oauth: data.oauth,
+                    oauthID: data.oauthID
                 }
             }
             const token = jwt.sign(payLoad, secretOrPrivateKey, options);
             req.session.access_token = token;
             console.log(' req.session.access_token = ', token);
-            //let xsrf_token = genXSRFId();
-            const xsrfTokenId = genXSRFId();
+            // let xsrf_token = genXSRFId();
+            // const xsrfTokenId = genXSRFId();
             const xsrfPayload = {
-                id: xsrfTokenId
+                id: data.userID
             };
             let xsrf_token = jwt.sign(xsrfPayload, secretOrPrivateKeyForCSRF, options);
             res.cookie('XSRF-TOKEN',xsrf_token, { expires: new Date(Date.now() + 30 * 60 * 1000), sameSite: 'lax', path: '/'}); 

@@ -38,8 +38,8 @@ export class UserService {
         return this._userInformation;
     }
 
-    public bindOauth(GitHubID: string, oauth: string) {
-        this._userInformation.oauthID = GitHubID;
+    public bindOauth(oauthID: string, oauth: string) {
+        this._userInformation.oauthID = oauthID;
         this._userInformation.oauth = oauth;
     }
 
