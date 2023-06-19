@@ -3,6 +3,8 @@ const { MYSQL_CONFIG } = require('../config/db')
 
 //创建连接对象
 const con =mysql.createConnection({
+    // docker
+    // host: 'mysql01',
     host: 'localhost',
     user: 'root',
     password: 'VySe-1929',

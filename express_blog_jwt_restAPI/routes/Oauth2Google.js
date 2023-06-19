@@ -6,7 +6,9 @@ const { SuccessModel, ErrorModel } = require('../model/resModel')
 
 const CLIENT_ID = '268444631280-cvjt1i0vaj29asbdnte8bjgqhhka4gp5.apps.googleusercontent.com';
 const CLIENT_SECRET = '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';
-const REDIRECT_URI = 'http://localhost:4005/GoogleRedirect';
+// const REDIRECT_URI = 'http://localhost:4005/GoogleRedirect';
+const REDIRECT_URI = 'http://8.218.114.58:3000/GoogleRedirect';
+// google 需要顶级域名，因此google Oauth 需要申请
 
 var access_token = '';
 var jwt = require('jsonwebtoken');

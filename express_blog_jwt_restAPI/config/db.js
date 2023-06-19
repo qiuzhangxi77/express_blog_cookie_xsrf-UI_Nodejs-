@@ -8,6 +8,8 @@ let REDIS_CONFIG = {}
 
 if(env === 'dev') {
     MYSQL_CONFIG = {
+        // docker
+        // host: 'mysql01',
         host: 'localhost',
         user: 'root',
         password: 'VySe-1929',
@@ -23,6 +25,8 @@ if(env === 'dev') {
 
 if(env === 'production') {
     MYSQL_CONFIG = {
+        // docker
+        // host: 'mysql01',
         host: 'localhost',
         user: 'root',
         password: 'VySe-1929',

@@ -4,7 +4,9 @@ const axios = require('axios');
 const {genUserID, genXSRFId} = require('../utils/cryp');
 const { SuccessModel, ErrorModel } = require('../model/resModel')
 const CLIENT_ID = '5dfd07abb7e13606fa90';
-const REDIRECT_URI = 'http://localhost:4005/GitHubRedirect';
+// const REDIRECT_URI = 'http://localhost:4005/GitHubRedirect';
+const REDIRECT_URI = 'http://8.218.114.58:3000/GitHubRedirect';
+
 const CLIENT_SECRET = 'df966d1a546fe47e3e895090fa03b5c70c6912ff';
 var access_token = '';
 var jwt = require('jsonwebtoken');
