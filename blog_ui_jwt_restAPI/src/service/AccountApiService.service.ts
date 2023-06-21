@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { myIp } from './settings';
+import { myDomain } from './settings';
 
 // Note: 跨域设置cookie问题
 // 前端要配置http的方法 withCredentials: true
@@ -22,7 +24,9 @@ export class AccountApiServiceService {
      */
     public login(user: any): Promise<any> {
         // const endpoint = 'http://localhost:4005/api/user/login';
-        const endpoint = 'http://8.218.114.58:3000/api/user/login';
+        // const endpoint = 'http://8.218.114.58:3000/api/user/login';
+        // const endpoint = 'http://duxingxia77.ink:3000/api/user/login';
+        const endpoint = `${myDomain}/api/user/login`;
         return this._http
             .post(endpoint, user, { withCredentials: true })
             .pipe(
@@ -35,7 +39,9 @@ export class AccountApiServiceService {
 
     public logout() {
         // const endpoint = 'http://localhost:4005/api/user/logout';
-        const endpoint = 'http://8.218.114.58:3000/api/user/logout';
+        // const endpoint = 'http://8.218.114.58:3000/api/user/logout';
+        // const endpoint = 'http://duxingxia77.ink:3000/api/user/logout';
+        const endpoint = `${myDomain}/api/user/logout`;
         return this._http
             .get(endpoint, { withCredentials: true })
             .pipe(
@@ -48,7 +54,9 @@ export class AccountApiServiceService {
 
     public loginTest(): Promise<any> {
         // const endpoint = 'http://localhost:4005/api/user/login-test';
-        const endpoint = 'http://8.218.114.58:3000/api/user/login-test';
+        // const endpoint = 'http://8.218.114.58:3000/api/user/login-test';
+        // const endpoint = 'http://duxingxia77.ink:3000/api/user/login-test';
+        const endpoint = `${myDomain}/api/user/login-test`;
         return this._http
             .get(endpoint, { withCredentials: true })
             .pipe(
@@ -65,7 +73,9 @@ export class AccountApiServiceService {
      */
     public getUserData() {
         // const endpoint = 'http://localhost:4005/api/user/userInfo';
-        const endpoint = 'http://8.218.114.58:3000/api/user/userInfo';
+        // const endpoint = 'http://8.218.114.58:3000/api/user/userInfo';
+        // const endpoint = 'http://duxingxia77.ink:3000/api/user/userInfo';
+        const endpoint = `${myDomain}/api/user/userInfo`;
         return this._http
             .get(endpoint, {
                 withCredentials: true,
@@ -80,7 +90,9 @@ export class AccountApiServiceService {
 
     public getBlogList() {
         // const endpoint = 'http://localhost:4005/api/blog/list';
-        const endpoint = 'http://8.218.114.58:3000/api/blog/list';
+        // const endpoint = 'http://duxingxia77.ink:3000/api/blog/list';
+        // const endpoint = 'http://duxingxia77.ink:3000/api/blog/list';
+        const endpoint = `${myDomain}/api/blog/list`;
         return this._http
             .get(endpoint, {
                 withCredentials: true,
@@ -95,7 +107,9 @@ export class AccountApiServiceService {
 
     public getMyBlogList(userID: string) {
         // const endpoint = `http://localhost:4005/api/blog/list/${userID}`;
-        const endpoint = `http://8.218.114.58:3000/api/blog/list/${userID}`;
+        // const endpoint = `http://8.218.114.58:3000/api/blog/list/${userID}`;
+        // const endpoint = `http://duxingxia77.ink:3000/api/blog/list/${userID}`;
+        const endpoint = `${myDomain}/api/blog/list/${userID}`;
         return this._http
             .get(endpoint, {
                 withCredentials: true,
@@ -110,7 +124,9 @@ export class AccountApiServiceService {
 
     public register(userInformation: any) {
         // const endpoint = 'http://localhost:4005/api/user/register';
-        const endpoint = 'http://8.218.114.58:3000/api/user/register';
+        // const endpoint = 'http://8.218.114.58:3000/api/user/register';
+        // const endpoint = 'http://duxingxia77.ink:3000/api/user/register';
+        const endpoint = `${myDomain}/api/user/register`;
         return this._http
             .post(endpoint, userInformation, {
                 withCredentials: true,
@@ -125,7 +141,9 @@ export class AccountApiServiceService {
 
     public newBlog(data: any) {
         // const endpoint = `http://localhost:4005/api/blog/${data.userID}/new`;
-        const endpoint = `http://8.218.114.58:3000/api/blog/${data.userID}/new`;
+        // const endpoint = `http://8.218.114.58:3000/api/blog/${data.userID}/new`;
+        // const endpoint = `http://duxingxia77.ink:3000/api/blog/${data.userID}/new`;
+        const endpoint = `${myDomain}/api/blog/${data.userID}/new`;
         return this._http
             .post(endpoint, data, {
                 withCredentials: true,
@@ -140,7 +158,9 @@ export class AccountApiServiceService {
 
     public updateBlog(data: any) {
         // const endpoint = `http://localhost:4005/api/blog/${data.userID}/${data.blogID}`;
-        const endpoint = `http://8.218.114.58:3000/api/blog/${data.userID}/${data.blogID}`;
+        // const endpoint = `http://8.218.114.58:3000/api/blog/${data.userID}/${data.blogID}`;
+        // const endpoint = `http://duxingxia77.ink:3000/api/blog/${data.userID}/${data.blogID}`;
+        const endpoint = `${myDomain}/api/blog/${data.userID}/${data.blogID}`;
         return this._http
             .put(endpoint, data, {
                 withCredentials: true,
@@ -155,7 +175,9 @@ export class AccountApiServiceService {
 
     public deleteBlog(data: any) {
         // const endpoint = `http://localhost:4005/api/blog/${data.userID}/${data.blogID}`;
-        const endpoint = `http://8.218.114.58:3000/api/blog/${data.userID}/${data.blogID}`;
+        // const endpoint = `http://8.218.114.58:3000/api/blog/${data.userID}/${data.blogID}`;
+        // const endpoint = `http://duxingxia77.ink:3000/api/blog/${data.userID}/${data.blogID}`;
+        const endpoint = `${myDomain}/api/blog/${data.userID}/${data.blogID}`;
         return this._http
             .delete(endpoint, {
                 withCredentials: true,
