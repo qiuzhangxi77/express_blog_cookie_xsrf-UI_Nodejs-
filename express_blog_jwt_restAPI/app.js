@@ -45,7 +45,7 @@ const disableCache = function(req, res, next) {
   next()
 }
 
-app.use(disableCache);
+//app.use(disableCache);
 
 //跨域中间件 或者用 require('cors');
 const crossDomain = function(req, res, next) {
